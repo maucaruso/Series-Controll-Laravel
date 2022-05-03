@@ -5,11 +5,7 @@ Séries
 @endsection
 
 @section('conteudo')
-@if(!empty($mensagem))
-<div class="alert alert-success">
-    {{ $mensagem }}
-</div>
-@endif
+@include('mensagem', ['mensagem' => $mensagem])
 
 <a href="{{ route('form_criar_serie') }}" class="btn btn-dark mb-2">Adicionar</a>
 
@@ -29,10 +25,10 @@ Séries
         </div>
 
         <span class="d-flex">
-            <button class="btn btn-info btn-sm" onclick="toggleInput({{ $serie->id }})">
+            <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
                 <i class="fas fa-edit"></i>
             </button>
-            <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm">
+            <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">
                 <i class="fas fa-external-link-alt"></i>
             </a>
             <form method="post" action="/series/{{ $serie->id }}" onSubmit="return confirm('Tem certeza que deseja remover {{ addslashes($serie->nome) }}?')">
