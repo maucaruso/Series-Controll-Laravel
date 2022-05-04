@@ -9,11 +9,14 @@ use App\Http\Requests\SeriesFormRequest;
 use App\Services\CriadorDeSeries;
 use App\Services\RemovedorDeSerie;
 use App\Temporada;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
+
     public function index(Request $request)
     {
+
         $series = Serie::query()->orderBy("nome")->get();
         $mensagem = $request->session()->get("mensagem");
 
