@@ -40,3 +40,30 @@ Route::get('/sair', function () {
     Auth::logout();
     return redirect('/entrar');
 });
+
+Route::get('/visualizando-email', function() {
+    return new \App\Mail\NovaSerie(
+        'Arrow',
+        '3',
+        '12'
+    );
+});
+
+Route::get('/enviando-email', function() {
+    $email = new \App\Mail\NovaSerie(
+        'arrow',
+        5,
+        10
+    );
+
+    $email->subject = 'Nova Série Adicionada';
+
+    $user = (object) [
+        'email' => 'teste@teste.com',
+        'name' => 'Teste'
+    ];
+
+    \Illuminate\Support\Facades\Mail::to($user)->send($email);
+
+    return 'E-mail enviado';
+});
